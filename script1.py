@@ -16,11 +16,12 @@ def convert_to_float(strValue):
     return float(strValue) 
 
 #convierte los valores de las dos columnas a analizar a float
+#en la duracion del tiempo se convierte a horas para que la escala en la grafica sea mas cercana a la calificacion
 dt['DuracionSegundos'] = dt['DuracionSegundos'].apply(duracion_to_float)
 dt['Califiacion'] = dt['Califiacion'].apply(convert_to_float)
 
 dt = dt[dt.DuracionSegundos != 0]
-dt = dt[dt.Califiacion != 0]
+#dt = dt[dt.Califiacion != 0]
 print(dt)
 d = dt.describe()
 print(d)
