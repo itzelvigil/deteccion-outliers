@@ -18,9 +18,10 @@ def convert_to_float(strValue):
 #convierte los valores de las dos columnas a analizar a float
 #en la duracion del tiempo se convierte a horas para que la escala en la grafica sea mas cercana a la calificacion
 dt['DuracionSegundos'] = dt['DuracionSegundos'].apply(duracion_to_float)
+dt = dt.rename(columns={'DuracionSegundos': 'DuaracionHoras'})
 dt['Califiacion'] = dt['Califiacion'].apply(convert_to_float)
 
-dt = dt[dt.DuracionSegundos != 0]
+dt = dt[dt.DuaracionHoras != 0]
 #dt = dt[dt.Califiacion != 0]
 print(dt)
 d = dt.describe()
@@ -56,7 +57,7 @@ def deleteAnomalies(df, a):
 
     return df
 
-a = find_anomalies(dt,'DuracionSegundos')
+a = find_anomalies(dt,'DuaracionHoras')
 dt = deleteAnomalies(dt,a)
 print(dt)
 b = find_anomalies(dt,'Califiacion')
